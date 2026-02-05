@@ -448,3 +448,85 @@
     }
   ]
 }
+{
+  "additionalEquipments": [
+    // 10 autres Compresseurs (COMP-B-202 à COMP-E-211)
+    {"id": "COMP-B-202", "name": "Compresseur B-202", "type": "Compresseur à piston", "building": "Bâtiment B", "zone": "Zone 2", "status": "operational", "healthScore": 76, "installDate": "2022-03-10", "maintenanceFrequency": "monthly"},
+    {"id": "COMP-C-203", "name": "Compresseur C-203", "type": "Compresseur scroll", "building": "Bâtiment C", "zone": "Zone 3", "status": "operational", "healthScore": 89, "installDate": "2023-07-22", "maintenanceFrequency": "quarterly"},
+    {"id": "COMP-D-204", "name": "Compresseur D-204", "type": "Compresseur à vis", "building": "Bâtiment D", "zone": "Zone 2", "status": "maintenance", "healthScore": 68, "installDate": "2021-12-05", "maintenanceFrequency": "monthly"},
+    {"id": "COMP-A-205", "name": "Compresseur A-205", "type": "Compresseur centrifuge", "building": "Bâtiment A", "zone": "Zone 2", "status": "operational", "healthScore": 92, "installDate": "2024-01-30", "maintenanceFrequency": "quarterly"},
+    {"id": "COMP-B-206", "name": "Compresseur B-206", "type": "Compresseur rotatif", "building": "Bâtiment B", "zone": "Zone 4", "status": "operational", "healthScore": 85, "installDate": "2023-09-15", "maintenanceFrequency": "biweekly"},
+    {"id": "COMP-C-207", "name": "Compresseur C-207", "type": "Compresseur à piston", "building": "Bâtiment C", "zone": "Zone 1", "status": "operational", "healthScore": 77, "installDate": "2022-06-20", "maintenanceFrequency": "monthly"},
+    {"id": "COMP-D-208", "name": "Compresseur D-208", "type": "Compresseur industriel", "building": "Bâtiment D", "zone": "Zone 3", "status": "operational", "healthScore": 91, "installDate": "2023-11-10", "maintenanceFrequency": "monthly"},
+    {"id": "COMP-E-209", "name": "Compresseur E-209", "type": "Compresseur à vis", "building": "Bâtiment E", "zone": "Zone 1", "status": "operational", "healthScore": 84, "installDate": "2024-02-25", "maintenanceFrequency": "quarterly"},
+    {"id": "COMP-E-210", "name": "Compresseur E-210", "type": "Compresseur scroll", "building": "Bâtiment E", "zone": "Zone 1", "status": "maintenance", "healthScore": 71, "installDate": "2022-10-12", "maintenanceFrequency": "monthly"},
+    {"id": "COMP-A-211", "name": "Compresseur A-211", "type": "Compresseur centrifuge", "building": "Bâtiment A", "zone": "Zone 3", "status": "operational", "healthScore": 88, "installDate": "2023-05-18", "maintenanceFrequency": "quarterly"},
+
+    // 12 autres Pompes (PUMP-C-302 à PUMP-E-313)
+    {"id": "PUMP-C-302", "name": "Pompe C-302", "type": "Pompe centrifuge", "building": "Bâtiment C", "zone": "Zone 2", "status": "operational", "healthScore": 81, "installDate": "2023-02-10", "maintenanceFrequency": "monthly", "criticalityLevel": "high"},
+    {"id": "PUMP-D-303", "name": "Pompe D-303", "type": "Pompe volumétrique", "building": "Bâtiment D", "zone": "Zone 4", "status": "operational", "healthScore": 87, "installDate": "2023-08-05", "maintenanceFrequency": "biweekly", "criticalityLevel": "high"},
+    {"id": "PUMP-A-304", "name": "Pompe A-304", "type": "Pompe à membrane", "building": "Bâtiment A", "zone": "Zone 5", "status": "maintenance", "healthScore": 64, "installDate": "2022-04-15", "maintenanceFrequency": "monthly", "criticalityLevel": "medium"},
+    {"id": "PUMP-B-305", "name": "Pompe B-305", "type": "Pompe immergée", "building": "Bâtiment B", "zone": "Zone 5", "status": "operational", "healthScore": 90, "installDate": "2024-01-12", "maintenanceFrequency": "quarterly", "criticalityLevel": "high"},
+    {"id": "PUMP-C-306", "name": "Pompe C-306", "type": "Pompe péristaltique", "building": "Bâtiment C", "zone": "Zone 4", "status": "operational", "healthScore": 78, "installDate": "2022-09-20", "maintenanceFrequency": "monthly", "criticalityLevel": "medium"},
+    {"id": "PUMP-D-307", "name": "Pompe D-307", "type": "Pompe centrifuge", "building": "Bâtiment D", "zone": "Zone 5", "status": "operational", "healthScore": 83, "installDate": "2023-03-28", "maintenanceFrequency": "biweekly", "criticalityLevel": "high"},
+    {"id": "PUMP-E-308", "name": "Pompe E-308", "type": "Pompe volumétrique", "building": "Bâtiment E", "zone": "Zone 2", "status": "operational", "healthScore": 89, "installDate": "2023-12-05", "maintenanceFrequency": "monthly", "criticalityLevel": "high"},
+    {"id": "PUMP-A-309", "name": "Pompe A-309", "type": "Pompe à engrenages", "building": "Bâtiment A", "zone": "Zone 6", "status": "operational", "healthScore": 75, "installDate": "2022-07-18", "maintenanceFrequency": "monthly", "criticalityLevel": "medium"},
+    {"id": "PUMP-B-310", "name": "Pompe B-310", "type": "Pompe centrifuge", "building": "Bâtiment B", "zone": "Zone 6", "status": "critical", "healthScore": 42, "installDate": "2021-05-22", "maintenanceFrequency": "weekly", "criticalityLevel": "critical"},
+    {"id": "PUMP-C-311", "name": "Pompe C-311", "type": "Pompe multicellulaire", "building": "Bâtiment C", "zone": "Zone 5", "status": "operational", "healthScore": 86, "installDate": "2023-10-30", "maintenanceFrequency": "monthly", "criticalityLevel": "high"},
+    {"id": "PUMP-D-312", "name": "Pompe D-312", "type": "Pompe à piston", "building": "Bâtiment D", "zone": "Zone 6", "status": "operational", "healthScore": 80, "installDate": "2023-01-15", "maintenanceFrequency": "biweekly", "criticalityLevel": "medium"},
+    {"id": "PUMP-E-313", "name": "Pompe E-313", "type": "Pompe immergée", "building": "Bâtiment E", "zone": "Zone 3", "status": "operational", "healthScore": 92, "installDate": "2024-03-08", "maintenanceFrequency": "quarterly", "criticalityLevel": "high"},
+
+    // 9 autres Convoyeurs (CONV-D-402 à CONV-E-410)
+    {"id": "CONV-D-402", "name": "Convoyeur D-402", "type": "Convoyeur aérien", "building": "Bâtiment D", "zone": "Zone 2", "status": "operational", "healthScore": 79, "installDate": "2022-11-15", "maintenanceFrequency": "biweekly"},
+    {"id": "CONV-E-403", "name": "Convoyeur E-403", "type": "Convoyeur à bande", "building": "Bâtiment E", "zone": "Zone 4", "status": "operational", "healthScore": 85, "installDate": "2023-06-22", "maintenanceFrequency": "monthly"},
+    {"id": "CONV-A-404", "name": "Convoyeur A-404", "type": "Convoyeur à rouleaux", "building": "Bâtiment A", "zone": "Zone 7", "status": "maintenance", "healthScore": 66, "installDate": "2022-02-10", "maintenanceFrequency": "weekly"},
+    {"id": "CONV-B-405", "name": "Convoyeur B-405", "type": "Convoyeur vibrant", "building": "Bâtiment B", "zone": "Zone 8", "status": "operational", "healthScore": 88, "installDate": "2023-09-05", "maintenanceFrequency": "monthly"},
+    {"id": "CONV-C-406", "name": "Convoyeur C-406", "type": "Convoyeur à chaîne", "building": "Bâtiment C", "zone": "Zone 7", "status": "operational", "healthScore": 73, "installDate": "2022-08-18", "maintenanceFrequency": "biweekly"},
+    {"id": "CONV-D-407", "name": "Convoyeur D-407", "type": "Convoyeur hélicoïdal", "building": "Bâtiment D", "zone": "Zone 8", "status": "operational", "healthScore": 91, "installDate": "2024-01-20", "maintenanceFrequency": "monthly"},
+    {"id": "CONV-E-408", "name": "Convoyeur E-408", "type": "Convoyeur à bande", "building": "Bâtiment E", "zone": "Zone 5", "status": "operational", "healthScore": 77, "installDate": "2022-12-08", "maintenanceFrequency": "biweekly"},
+    {"id": "CONV-A-409", "name": "Convoyeur A-409", "type": "Convoyeur à rouleaux", "building": "Bâtiment A", "zone": "Zone 8", "status": "operational", "healthScore": 82, "installDate": "2023-04-15", "maintenanceFrequency": "monthly"},
+    {"id": "CONV-B-410", "name": "Convoyeur B-410", "type": "Convoyeur magnétique", "building": "Bâtiment B", "zone": "Zone 9", "status": "operational", "healthScore": 86, "installDate": "2023-11-28", "maintenanceFrequency": "quarterly"},
+
+    // 6 autres Réacteurs (REACT-C-104 à REACT-E-109)
+    {"id": "REACT-C-104", "name": "Réacteur R-104", "type": "Réacteur agité", "building": "Bâtiment C", "zone": "Zone 8", "status": "operational", "healthScore": 85, "installDate": "2022-10-05", "maintenanceFrequency": "monthly", "criticalityLevel": "critical", "criticalGases": ["H2SO4"]},
+    {"id": "REACT-D-105", "name": "Réacteur R-105", "type": "Réacteur tubulaire", "building": "Bâtiment D", "zone": "Zone 7", "status": "operational", "healthScore": 79, "installDate": "2021-07-12", "maintenanceFrequency": "monthly", "criticalityLevel": "high", "criticalGases": ["H3PO4"]},
+    {"id": "REACT-A-106", "name": "Réacteur R-106", "type": "Réacteur batch", "building": "Bâtiment A", "zone": "Zone 9", "status": "maintenance", "healthScore": 58, "installDate": "2020-04-20", "maintenanceFrequency": "biweekly", "criticalityLevel": "critical", "criticalGases": ["H2S", "SO2"]},
+    {"id": "REACT-B-107", "name": "Réacteur R-107", "type": "Réacteur CSTR", "building": "Bâtiment B", "zone": "Zone 4", "status": "operational", "healthScore": 91, "installDate": "2023-03-15", "maintenanceFrequency": "monthly", "criticalityLevel": "high", "criticalGases": ["H3PO4"]},
+    {"id": "REACT-C-108", "name": "Réacteur R-108", "type": "Réacteur à lit fluidisé", "building": "Bâtiment C", "zone": "Zone 9", "status": "operational", "healthScore": 83, "installDate": "2022-11-28", "maintenanceFrequency": "monthly", "criticalityLevel": "critical", "criticalGases": ["H2SO4", "SO2"]},
+    {"id": "REACT-E-109", "name": "Réacteur R-109", "type": "Réacteur chimique", "building": "Bâtiment E", "zone": "Zone 6", "status": "operational", "healthScore": 87, "installDate": "2023-08-22", "maintenanceFrequency": "monthly", "criticalityLevel": "high", "criticalGases": ["H3PO4"]},
+
+    // 4 autres Turbines (TURB-E-502 à TURB-B-505)
+    {"id": "TURB-E-502", "name": "Turbine T-502", "type": "Turbine à vapeur", "building": "Bâtiment E", "zone": "Zone 7", "status": "operational", "healthScore": 86, "installDate": "2022-09-10", "maintenanceFrequency": "quarterly", "criticalityLevel": "critical"},
+    {"id": "TURB-A-503", "name": "Turbine T-503", "type": "Turbine hydraulique", "building": "Bâtiment A", "zone": "Zone 10", "status": "operational", "healthScore": 90, "installDate": "2023-06-18", "maintenanceFrequency": "semiannual", "criticalityLevel": "high"},
+    {"id": "TURB-C-504", "name": "Turbine T-504", "type": "Turbine à gaz", "building": "Bâtiment C", "zone": "Zone 10", "status": "maintenance", "healthScore": 72, "installDate": "2021-11-05", "maintenanceFrequency": "quarterly", "criticalityLevel": "critical"},
+    {"id": "TURB-B-505", "name": "Turbine T-505", "type": "Turbine à vapeur", "building": "Bâtiment B", "zone": "Zone 10", "status": "operational", "healthScore": 84, "installDate": "2022-04-22", "maintenanceFrequency": "quarterly", "criticalityLevel": "high"},
+
+    // 3 autres Générateurs (GEN-C-403 à GEN-E-405)
+    {"id": "GEN-C-403", "name": "Générateur G-403", "type": "Générateur diesel", "building": "Bâtiment C", "zone": "Zone 11", "status": "operational", "healthScore": 89, "installDate": "2023-02-28", "maintenanceFrequency": "quarterly", "criticalityLevel": "high"},
+    {"id": "GEN-D-404", "name": "Générateur G-404", "type": "Générateur à gaz", "building": "Bâtiment D", "zone": "Zone 9", "status": "operational", "healthScore": 93, "installDate": "2024-01-05", "maintenanceFrequency": "semiannual", "criticalityLevel": "medium"},
+    {"id": "GEN-E-405", "name": "Générateur G-405", "type": "Générateur diesel", "building": "Bâtiment E", "zone": "Zone 8", "status": "operational", "healthScore": 87, "installDate": "2023-07-10", "maintenanceFrequency": "quarterly", "criticalityLevel": "high"},
+
+    // 5 autres Échangeurs (EXCH-D-603 à EXCH-B-607)
+    {"id": "EXCH-D-603", "name": "Échangeur E-603", "type": "Échangeur à tubes", "building": "Bâtiment D", "zone": "Zone 10", "status": "operational", "healthScore": 81, "installDate": "2022-12-15", "maintenanceFrequency": "quarterly"},
+    {"id": "EXCH-E-604", "name": "Échangeur E-604", "type": "Échangeur à plaques", "building": "Bâtiment E", "zone": "Zone 9", "status": "operational", "healthScore": 88, "installDate": "2023-09-20", "maintenanceFrequency": "semiannual"},
+    {"id": "EXCH-A-605", "name": "Échangeur E-605", "type": "Échangeur spiralé", "building": "Bâtiment A", "zone": "Zone 11", "status": "operational", "healthScore": 76, "installDate": "2022-06-08", "maintenanceFrequency": "quarterly"},
+    {"id": "EXCH-B-606", "name": "Échangeur E-606", "type": "Échangeur à serpentin", "building": "Bâtiment B", "zone": "Zone 11", "status": "maintenance", "healthScore": 69, "installDate": "2021-09-15", "maintenanceFrequency": "quarterly"},
+    {"id": "EXCH-C-607", "name": "Échangeur E-607", "type": "Échangeur thermique", "building": "Bâtiment C", "zone": "Zone 12", "status": "operational", "healthScore": 84, "installDate": "2023-05-12", "maintenanceFrequency": "semiannual"},
+
+    // 4 autres Séparateurs (SEP-C-702 à SEP-E-705)
+    {"id": "SEP-C-702", "name": "Séparateur S-702", "type": "Séparateur centrifuge", "building": "Bâtiment C", "zone": "Zone 13", "status": "operational", "healthScore": 80, "installDate": "2022-10-20", "maintenanceFrequency": "monthly"},
+    {"id": "SEP-D-703", "name": "Séparateur S-703", "type": "Séparateur magnétique", "building": "Bâtiment D", "zone": "Zone 11", "status": "operational", "healthScore": 87, "installDate": "2023-07-05", "maintenanceFrequency": "biweekly"},
+    {"id": "SEP-A-704", "name": "Séparateur S-704", "type": "Séparateur par gravité", "building": "Bâtiment A", "zone": "Zone 12", "status": "operational", "healthScore": 92, "installDate": "2024-02-18", "maintenanceFrequency": "quarterly"},
+    {"id": "SEP-E-705", "name": "Séparateur S-705", "type": "Séparateur cyclonique", "building": "Bâtiment E", "zone": "Zone 10", "status": "operational", "healthScore": 78, "installDate": "2022-11-30", "maintenanceFrequency": "monthly"},
+
+    // Équipements divers (8 unités)
+    {"id": "TANK-A-801", "name": "Réservoir T-801", "type": "Réservoir de stockage", "category": "storage", "building": "Bâtiment A", "zone": "Zone 13", "status": "operational", "healthScore": 85, "installDate": "2021-08-10", "maintenanceFrequency": "semiannual", "specifications": {"capacity": "50000 L"}},
+    {"id": "TANK-B-802", "name": "Réservoir T-802", "type": "Cuve acide", "category": "storage", "building": "Bâtiment B", "zone": "Zone 12", "status": "operational", "healthScore": 73, "installDate": "2020-12-05", "maintenanceFrequency": "quarterly", "criticalityLevel": "critical"},
+    {"id": "FILT-C-901", "name": "Filtre F-901", "type": "Filtre à manches", "category": "filtration", "building": "Bâtiment C", "zone": "Zone 14", "status": "operational", "healthScore": 81, "installDate": "2023-03-20", "maintenanceFrequency": "monthly"},
+    {"id": "FILT-D-902", "name": "Filtre F-902", "type": "Filtre à cartouches", "category": "filtration", "building": "Bâtiment D", "zone": "Zone 12", "status": "operational", "healthScore": 89, "installDate": "2023-10-15", "maintenanceFrequency": "biweekly"},
+    {"id": "MIXER-E-1001", "name": "Mélangeur M-1001", "type": "Mélangeur statique", "category": "mixing", "building": "Bâtiment E", "zone": "Zone 11", "status": "operational", "healthScore": 86, "installDate": "2022-07-28", "maintenanceFrequency": "quarterly"},
+    {"id": "MIXER-A-1002", "name": "Mélangeur M-1002", "type": "Mélangeur dynamique", "category": "mixing", "building": "Bâtiment A", "zone": "Zone 14", "status": "operational", "healthScore": 90, "installDate": "2023-12-10", "maintenanceFrequency": "monthly"},
+    {"id": "VALVE-B-1101", "name": "Vanne de régulation V-1101", "type": "Vanne pneumatique", "category": "valves", "building": "Bâtiment B", "zone": "Zone 13", "status": "operational", "healthScore": 94, "installDate": "2024-01-25", "maintenanceFrequency": "quarterly"},
+    {"id": "VALVE-C-1102", "name": "Vanne de sécurité V-1102", "type": "Vanne motorisée", "category": "valves", "building": "Bâtiment C", "zone": "Zone 15", "status": "operational", "healthScore": 88, "installDate": "2023-05-30", "maintenanceFrequency": "semiannual", "criticalityLevel": "critical"}
+  ]
+}

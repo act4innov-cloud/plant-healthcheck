@@ -1,0 +1,814 @@
+{
+  "templates": [
+    {
+      "id": "TPL_COMP_001",
+      "equipmentType": "compression",
+      "title": "Inspection Compresseur - Norme ISO 45001 OCP",
+      "description": "Checklist standard pour l'inspection des compresseurs industriels selon les normes OCP et ISO 45001",
+      "version": "2.1",
+      "frequency": "monthly",
+      "estimatedDuration": 45,
+      "requiredCertifications": ["ISO 45001", "Habilitation électrique"],
+      "requiredPPE": [
+        "Casque de sécurité",
+        "Lunettes de protection",
+        "Bouchons d'oreille",
+        "Gants anti-vibration",
+        "Chaussures de sécurité S3"
+      ],
+      "sections": [
+        {
+          "id": "S1",
+          "name": "1. Inspection visuelle",
+          "order": 1,
+          "items": [
+            {
+              "id": "C1",
+              "order": 1,
+              "check": "État des fixations et supports",
+              "description": "Vérifier que toutes les fixations sont serrées et non corrodées",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "high"
+            },
+            {
+              "id": "C2",
+              "order": 2,
+              "check": "Fuites d'huile/gaz détectées",
+              "description": "Inspecter visuellement et avec détecteur si nécessaire",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "C3",
+              "order": 3,
+              "check": "Corrosion ou déformation visible",
+              "description": "Examiner le carter et les composants externes",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "high"
+            },
+            {
+              "id": "C4",
+              "order": 4,
+              "check": "Propreté du carter et filtres",
+              "description": "Vérifier l'absence d'accumulation de poussière/débris",
+              "type": "boolean",
+              "mandatory": false,
+              "criticalityLevel": "medium"
+            },
+            {
+              "id": "C5",
+              "order": 5,
+              "check": "État des tuyauteries et raccords",
+              "description": "Inspecter l'intégrité des connexions",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "high"
+            }
+          ]
+        },
+        {
+          "id": "S2",
+          "name": "2. Tests fonctionnels",
+          "order": 2,
+          "items": [
+            {
+              "id": "C6",
+              "order": 6,
+              "check": "Pression de service",
+              "description": "Mesurer la pression de sortie",
+              "type": "number",
+              "unit": "bars",
+              "range": {
+                "min": 6,
+                "max": 8,
+                "optimal": 7
+              },
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "C7",
+              "order": 7,
+              "check": "Température moteur",
+              "description": "Mesurer après 10 min de fonctionnement",
+              "type": "number",
+              "unit": "°C",
+              "range": {
+                "min": 20,
+                "max": 75,
+                "optimal": 50
+              },
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "C8",
+              "order": 8,
+              "check": "Niveau vibrations",
+              "description": "Mesurer avec vibromètre aux 4 points de fixation",
+              "type": "select",
+              "options": [
+                {"value": "low", "label": "Faible (< 2.8 mm/s)", "acceptable": true},
+                {"value": "medium", "label": "Moyen (2.8-7.1 mm/s)", "acceptable": true},
+                {"value": "high", "label": "Élevé (> 7.1 mm/s)", "acceptable": false}
+              ],
+              "mandatory": true,
+              "criticalityLevel": "high"
+            },
+            {
+              "id": "C9",
+              "order": 9,
+              "check": "Niveau sonore",
+              "description": "Mesure à 1m du compresseur",
+              "type": "number",
+              "unit": "dB(A)",
+              "range": {
+                "min": 0,
+                "max": 85
+              },
+              "mandatory": true,
+              "criticalityLevel": "medium"
+            },
+            {
+              "id": "C10",
+              "order": 10,
+              "check": "Débit d'air",
+              "description": "Vérifier le débit nominal",
+              "type": "number",
+              "unit": "m³/min",
+              "range": {
+                "min": 15,
+                "max": 18
+              },
+              "mandatory": true,
+              "criticalityLevel": "high"
+            }
+          ]
+        },
+        {
+          "id": "S3",
+          "name": "3. Sécurité et conformité OCP",
+          "order": 3,
+          "items": [
+            {
+              "id": "C11",
+              "order": 11,
+              "check": "Système arrêt d'urgence fonctionnel",
+              "description": "Tester le bouton coup de poing",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "C12",
+              "order": 12,
+              "check": "Détecteurs H2S opérationnels (si applicable)",
+              "description": "Test des capteurs de gaz",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "C13",
+              "order": 13,
+              "check": "EPI disponibles à proximité",
+              "description": "Vérifier la présence et l'état des équipements de protection",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "high"
+            },
+            {
+              "id": "C14",
+              "order": 14,
+              "check": "Signalisation de sécurité conforme",
+              "description": "Panneaux d'avertissement présents et lisibles",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "medium"
+            },
+            {
+              "id": "C15",
+              "order": 15,
+              "check": "Procédure d'urgence affichée",
+              "description": "Consignes d'intervention visible et à jour",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "high"
+            }
+          ]
+        },
+        {
+          "id": "S4",
+          "name": "4. Maintenance préventive",
+          "order": 4,
+          "items": [
+            {
+              "id": "C16",
+              "order": 16,
+              "check": "Niveau d'huile",
+              "description": "Vérifier le niveau et la qualité de l'huile",
+              "type": "select",
+              "options": [
+                {"value": "ok", "label": "OK - Niveau correct", "acceptable": true},
+                {"value": "low", "label": "Bas - À compléter", "acceptable": false},
+                {"value": "dirty", "label": "Sale - À vidanger", "acceptable": false}
+              ],
+              "mandatory": true,
+              "criticalityLevel": "high"
+            },
+            {
+              "id": "C17",
+              "order": 17,
+              "check": "État des filtres à air",
+              "description": "Inspecter et nettoyer si nécessaire",
+              "type": "select",
+              "options": [
+                {"value": "clean", "label": "Propre", "acceptable": true},
+                {"value": "dusty", "label": "Poussiéreux - À nettoyer", "acceptable": true},
+                {"value": "clogged", "label": "Colmaté - À remplacer", "acceptable": false}
+              ],
+              "mandatory": true,
+              "criticalityLevel": "medium"
+            },
+            {
+              "id": "C18",
+              "order": 18,
+              "check": "Tension des courroies",
+              "description": "Vérifier la tension et l'usure",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "medium"
+            }
+          ]
+        },
+        {
+          "id": "S5",
+          "name": "5. Observations et recommandations",
+          "order": 5,
+          "items": [
+            {
+              "id": "C19",
+              "order": 19,
+              "check": "Notes de l'inspecteur",
+              "description": "Remarques, observations particulières, recommandations",
+              "type": "textarea",
+              "mandatory": false,
+              "criticalityLevel": "low"
+            },
+            {
+              "id": "C20",
+              "order": 20,
+              "check": "Photo de l'équipement",
+              "description": "Photo d'ensemble et de tout défaut détecté",
+              "type": "file",
+              "acceptedFormats": ["image/jpeg", "image/png"],
+              "maxSize": 5242880,
+              "mandatory": false,
+              "criticalityLevel": "low"
+            },
+            {
+              "id": "C21",
+              "order": 21,
+              "check": "Intervention nécessaire",
+              "description": "Indiquer si une intervention est requise",
+              "type": "select",
+              "options": [
+                {"value": "none", "label": "Aucune intervention", "acceptable": true},
+                {"value": "minor", "label": "Intervention mineure programmée", "acceptable": true},
+                {"value": "urgent", "label": "Intervention urgente requise", "acceptable": false}
+              ],
+              "mandatory": true,
+              "criticalityLevel": "high"
+            }
+          ]
+        }
+      ],
+      "scoringRules": {
+        "totalItems": 21,
+        "mandatoryItems": 18,
+        "passingScore": 85,
+        "criticalItemsRequired": true
+      },
+      "createdAt": "2025-01-15T10:00:00Z",
+      "updatedAt": "2026-01-20T14:30:00Z",
+      "createdBy": "admin@ocp.ma",
+      "approvedBy": "safety.manager@ocp.ma"
+    },
+    {
+      "id": "TPL_PUMP_002",
+      "equipmentType": "pumping",
+      "title": "Inspection Pompe - Norme ISO 45001 OCP",
+      "description": "Checklist pour l'inspection des pompes industrielles, adaptée aux pompes manipulant des produits chimiques",
+      "version": "2.0",
+      "frequency": "biweekly",
+      "estimatedDuration": 30,
+      "requiredCertifications": ["ISO 45001", "Formation produits chimiques"],
+      "requiredPPE": [
+        "Combinaison chimique",
+        "Gants résistants aux acides",
+        "Lunettes étanches",
+        "Masque respiratoire",
+        "Bottes de sécurité"
+      ],
+      "sections": [
+        {
+          "id": "P1",
+          "name": "1. Inspection visuelle",
+          "order": 1,
+          "items": [
+            {
+              "id": "P1_1",
+              "order": 1,
+              "check": "État du corps de pompe",
+              "description": "Vérifier l'absence de corrosion, fissures",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "P1_2",
+              "order": 2,
+              "check": "Fuites détectées",
+              "description": "Inspecter presse-étoupe, joints, raccords",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "P1_3",
+              "order": 3,
+              "check": "État des tuyauteries",
+              "description": "Vérifier aspiration et refoulement",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "high"
+            }
+          ]
+        },
+        {
+          "id": "P2",
+          "name": "2. Tests fonctionnels",
+          "order": 2,
+          "items": [
+            {
+              "id": "P2_1",
+              "order": 4,
+              "check": "Pression de refoulement",
+              "description": "Mesure en bar",
+              "type": "number",
+              "unit": "bars",
+              "range": {"min": 3, "max": 10},
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "P2_2",
+              "order": 5,
+              "check": "Débit",
+              "description": "Mesure en m³/h",
+              "type": "number",
+              "unit": "m³/h",
+              "range": {"min": 50, "max": 150},
+              "mandatory": true,
+              "criticalityLevel": "high"
+            },
+            {
+              "id": "P2_3",
+              "order": 6,
+              "check": "Température moteur",
+              "type": "number",
+              "unit": "°C",
+              "range": {"min": 20, "max": 80},
+              "mandatory": true,
+              "criticalityLevel": "high"
+            },
+            {
+              "id": "P2_4",
+              "order": 7,
+              "check": "Vibrations",
+              "type": "select",
+              "options": [
+                {"value": "low", "label": "Faibles", "acceptable": true},
+                {"value": "medium", "label": "Moyennes", "acceptable": true},
+                {"value": "high", "label": "Élevées", "acceptable": false}
+              ],
+              "mandatory": true,
+              "criticalityLevel": "high"
+            }
+          ]
+        },
+        {
+          "id": "P3",
+          "name": "3. Sécurité chimique OCP",
+          "order": 3,
+          "items": [
+            {
+              "id": "P3_1",
+              "order": 8,
+              "check": "Détecteurs de gaz opérationnels",
+              "description": "Test H2S, SO2 selon produit pompé",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "P3_2",
+              "order": 9,
+              "check": "Bac de rétention conforme",
+              "description": "Volume >= 110% du volume pompé",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "P3_3",
+              "order": 10,
+              "check": "Douche de sécurité accessible",
+              "description": "< 10m et fonctionnelle",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "P3_4",
+              "order": 11,
+              "check": "Kit anti-pollution disponible",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "high"
+            }
+          ]
+        },
+        {
+          "id": "P4",
+          "name": "4. Maintenance",
+          "order": 4,
+          "items": [
+            {
+              "id": "P4_1",
+              "order": 12,
+              "check": "État des garnitures mécaniques",
+              "type": "select",
+              "options": [
+                {"value": "ok", "label": "Bon état", "acceptable": true},
+                {"value": "wear", "label": "Usure légère", "acceptable": true},
+                {"value": "replace", "label": "À remplacer", "acceptable": false}
+              ],
+              "mandatory": true,
+              "criticalityLevel": "critical"
+            },
+            {
+              "id": "P4_2",
+              "order": 13,
+              "check": "Graissage roulements",
+              "type": "boolean",
+              "mandatory": true,
+              "criticalityLevel": "medium"
+            }
+          ]
+        },
+        {
+          "id": "P5",
+          "name": "5. Observations",
+          "order": 5,
+          "items": [
+            {
+              "id": "P5_1",
+              "order": 14,
+              "check": "Notes de l'inspecteur",
+              "type": "textarea",
+              "mandatory": false,
+              "criticalityLevel": "low"
+            },
+            {
+              "id": "P5_2",
+              "order": 15,
+              "check": "Photos",
+              "type": "file",
+              "acceptedFormats": ["image/jpeg", "image/png"],
+              "mandatory": false,
+              "criticalityLevel": "low"
+            }
+          ]
+        }
+      ],
+      "scoringRules": {
+        "totalItems": 15,
+        "mandatoryItems": 13,
+        "passingScore": 80,
+        "criticalItemsRequired": true
+      }
+    },
+    {
+      "id": "TPL_CONV_003",
+      "equipmentType": "transport",
+      "title": "Inspection Convoyeur - Norme ISO 45001 OCP",
+      "description": "Checklist pour convoyeurs à bande, rouleaux et chaîne",
+      "version": "1.8",
+      "frequency": "weekly",
+      "estimatedDuration": 25,
+      "requiredPPE": [
+        "Casque",
+        "Gants anti-coupure",
+        "Chaussures de sécurité",
+        "Gilet haute visibilité"
+      ],
+      "sections": [
+        {
+          "id": "CV1",
+          "name": "1. Inspection visuelle",
+          "items": [
+            {"id": "CV1_1", "check": "État de la bande/chaîne", "type": "select", "options": [{"value": "good", "label": "Bon", "acceptable": true}, {"value": "wear", "label": "Usure visible", "acceptable": true}, {"value": "damaged", "label": "Endommagée", "acceptable": false}], "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "CV1_2", "check": "Alignement de la bande", "type": "boolean", "mandatory": true, "criticalityLevel": "high"},
+            {"id": "CV1_3", "check": "État des rouleaux", "type": "boolean", "mandatory": true, "criticalityLevel": "high"},
+            {"id": "CV1_4", "check": "Accumulation de matière", "type": "boolean", "mandatory": true, "criticalityLevel": "medium"}
+          ]
+        },
+        {
+          "id": "CV2",
+          "name": "2. Tests fonctionnels",
+          "items": [
+            {"id": "CV2_1", "check": "Vitesse de bande", "type": "number", "unit": "m/s", "range": {"min": 1.5, "max": 3.5}, "mandatory": true, "criticalityLevel": "high"},
+            {"id": "CV2_2", "check": "Niveau sonore anormal", "type": "boolean", "mandatory": true, "criticalityLevel": "medium"},
+            {"id": "CV2_3", "check": "Test démarrage/arrêt", "type": "boolean", "mandatory": true, "criticalityLevel": "high"}
+          ]
+        },
+        {
+          "id": "CV3",
+          "name": "3. Sécurité",
+          "items": [
+            {"id": "CV3_1", "check": "Arrêts d'urgence fonctionnels", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "CV3_2", "check": "Protections latérales présentes", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "CV3_3", "check": "Détecteur de dérive opérationnel", "type": "boolean", "mandatory": true, "criticalityLevel": "high"},
+            {"id": "CV3_4", "check": "Protection contre le bourrage", "type": "boolean", "mandatory": true, "criticalityLevel": "high"}
+          ]
+        },
+        {
+          "id": "CV4",
+          "name": "4. Maintenance",
+          "items": [
+            {"id": "CV4_1", "check": "Tension de bande", "type": "select", "options": [{"value": "ok", "label": "Correcte", "acceptable": true}, {"value": "loose", "label": "Trop lâche", "acceptable": false}, {"value": "tight", "label": "Trop tendue", "acceptable": false}], "mandatory": true, "criticalityLevel": "high"},
+            {"id": "CV4_2", "check": "Graissage des roulements", "type": "boolean", "mandatory": true, "criticalityLevel": "medium"}
+          ]
+        },
+        {
+          "id": "CV5",
+          "name": "5. Observations",
+          "items": [
+            {"id": "CV5_1", "check": "Notes", "type": "textarea", "mandatory": false},
+            {"id": "CV5_2", "check": "Photos", "type": "file", "mandatory": false}
+          ]
+        }
+      ],
+      "scoringRules": {"totalItems": 13, "mandatoryItems": 11, "passingScore": 75}
+    },
+    {
+      "id": "TPL_REACT_004",
+      "equipmentType": "chemical_process",
+      "title": "Inspection Réacteur Chimique - Norme ISO 45001 OCP",
+      "description": "Checklist pour réacteurs manipulant H2S, H2SO4, H3PO4",
+      "version": "3.0",
+      "frequency": "monthly",
+      "estimatedDuration": 60,
+      "requiredCertifications": ["ISO 45001", "Formation produits chimiques niveau 3", "Permis espaces confinés"],
+      "requiredPPE": [
+        "Combinaison chimique étanche",
+        "Gants résistants aux acides",
+        "Masque respiratoire autonome",
+        "Bottes chimiques",
+        "Harnais de sécurité"
+      ],
+      "sections": [
+        {
+          "id": "R1",
+          "name": "1. Préparation et sécurité",
+          "items": [
+            {"id": "R1_1", "check": "Permis de travail obtenu", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R1_2", "check": "Analyse atmosphère (O2, H2S, LEL)", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R1_3", "check": "Ventilation forcée active", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R1_4", "check": "Détecteurs multi-gaz opérationnels", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R1_5", "check": "Veilleur de sécurité désigné", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"}
+          ]
+        },
+        {
+          "id": "R2",
+          "name": "2. Inspection externe",
+          "items": [
+            {"id": "R2_1", "check": "État de la cuve (corrosion, fissures)", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R2_2", "check": "Fuites externes détectées", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R2_3", "check": "Isolation thermique intacte", "type": "boolean", "mandatory": true, "criticalityLevel": "medium"},
+            {"id": "R2_4", "check": "État des vannes et raccords", "type": "boolean", "mandatory": true, "criticalityLevel": "high"}
+          ]
+        },
+        {
+          "id": "R3",
+          "name": "3. Tests fonctionnels",
+          "items": [
+            {"id": "R3_1", "check": "Pression interne", "type": "number", "unit": "bars", "range": {"min": 0, "max": 6}, "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R3_2", "check": "Température de process", "type": "number", "unit": "°C", "range": {"min": -20, "max": 200}, "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R3_3", "check": "Test soupape de sécurité", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R3_4", "check": "Test système d'agitation", "type": "boolean", "mandatory": true, "criticalityLevel": "high"}
+          ]
+        },
+        {
+          "id": "R4",
+          "name": "4. Sécurité chimique OCP",
+          "items": [
+            {"id": "R4_1", "check": "Capteur H2S fonctionnel", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R4_2", "check": "Capteur SO2 fonctionnel", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R4_3", "check": "Système neutralisation automatique", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R4_4", "check": "Douches de sécurité < 10m", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R4_5", "check": "Rince-œil opérationnel", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "R4_6", "check": "Système extinction incendie", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"}
+          ]
+        },
+        {
+          "id": "R5",
+          "name": "5. Observations",
+          "items": [
+            {"id": "R5_1", "check": "Notes inspecteur", "type": "textarea", "mandatory": false},
+            {"id": "R5_2", "check": "Photos défauts", "type": "file", "mandatory": false},
+            {"id": "R5_3", "check": "Rapport d'analyse atmosphère", "type": "file", "mandatory": true, "criticalityLevel": "critical"}
+          ]
+        }
+      ],
+      "scoringRules": {"totalItems": 20, "mandatoryItems": 19, "passingScore": 95, "criticalItemsRequired": true}
+    },
+    {
+      "id": "TPL_TURB_005",
+      "equipmentType": "power_generation",
+      "title": "Inspection Turbine - Norme ISO 45001 OCP",
+      "description": "Checklist pour turbines à vapeur et à gaz",
+      "version": "1.5",
+      "frequency": "quarterly",
+      "estimatedDuration": 90,
+      "sections": [
+        {
+          "id": "T1",
+          "name": "1. Inspection externe",
+          "items": [
+            {"id": "T1_1", "check": "État du carter", "type": "boolean", "mandatory": true, "criticalityLevel": "high"},
+            {"id": "T1_2", "check": "Fuites vapeur/huile", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "T1_3", "check": "Isolation thermique", "type": "boolean", "mandatory": true, "criticalityLevel": "medium"}
+          ]
+        },
+        {
+          "id": "T2",
+          "name": "2. Tests fonctionnels",
+          "items": [
+            {"id": "T2_1", "check": "Vitesse de rotation", "type": "number", "unit": "rpm", "range": {"min": 2900, "max": 3100}, "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "T2_2", "check": "Température paliers", "type": "number", "unit": "°C", "range": {"min": 40, "max": 85}, "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "T2_3", "check": "Pression vapeur admission", "type": "number", "unit": "bars", "range": {"min": 55, "max": 65}, "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "T2_4", "check": "Vibrations", "type": "select", "options": [{"value": "low", "label": "Faibles", "acceptable": true}, {"value": "medium", "label": "Moyennes", "acceptable": true}, {"value": "high", "label": "Élevées", "acceptable": false}], "mandatory": true, "criticalityLevel": "critical"}
+          ]
+        },
+        {
+          "id": "T3",
+          "name": "3. Sécurité",
+          "items": [
+            {"id": "T3_1", "check": "Protection survitesse opérationnelle", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "T3_2", "check": "Système arrêt d'urgence", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "T3_3", "check": "Système anti-incendie CO2", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"}
+          ]
+        },
+        {
+          "id": "T4",
+          "name": "4. Observations",
+          "items": [
+            {"id": "T4_1", "check": "Notes", "type": "textarea", "mandatory": false},
+            {"id": "T4_2", "check": "Photos", "type": "file", "mandatory": false}
+          ]
+        }
+      ],
+      "scoringRules": {"totalItems": 12, "mandatoryItems": 10, "passingScore": 85}
+    },
+    {
+      "id": "TPL_GEN_006",
+      "equipmentType": "power_generation",
+      "title": "Inspection Générateur - Norme ISO 45001 OCP",
+      "description": "Checklist pour générateurs diesel et à gaz",
+      "version": "1.3",
+      "frequency": "quarterly",
+      "estimatedDuration": 45,
+      "sections": [
+        {
+          "id": "G1",
+          "name": "1. Inspection moteur",
+          "items": [
+            {"id": "G1_1", "check": "Niveau d'huile moteur", "type": "boolean", "mandatory": true, "criticalityLevel": "high"},
+            {"id": "G1_2", "check": "Niveau liquide refroidissement", "type": "boolean", "mandatory": true, "criticalityLevel": "high"},
+            {"id": "G1_3", "check": "État des courroies", "type": "boolean", "mandatory": true, "criticalityLevel": "medium"},
+            {"id": "G1_4", "check": "Fuites détectées", "type": "boolean", "mandatory": true, "criticalityLevel": "high"}
+          ]
+        },
+        {
+          "id": "G2",
+          "name": "2. Tests électriques",
+          "items": [
+            {"id": "G2_1", "check": "Tension de sortie", "type": "number", "unit": "kV", "range": {"min": 10.5, "max": 11.5}, "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "G2_2", "check": "Fréquence", "type": "number", "unit": "Hz", "range": {"min": 49.5, "max": 50.5}, "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "G2_3", "check": "Test démarrage automatique", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"}
+          ]
+        },
+        {
+          "id": "G3",
+          "name": "3. Sécurité",
+          "items": [
+            {"id": "G3_1", "check": "Arrêt d'urgence fonctionnel", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "G3_2", "check": "Protection surcharge", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"},
+            {"id": "G3_3", "check": "Système extinction automatique", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"}
+          ]
+        },
+        {
+          "id": "G4",
+          "name": "4. Observations",
+          "items": [
+            {"id": "G4_1", "check": "Notes", "type": "textarea", "mandatory": false},
+            {"id": "G4_2", "check": "Photos", "type": "file", "mandatory": false}
+          ]
+        }
+      ],
+      "scoringRules": {"totalItems": 12, "mandatoryItems": 10, "passingScore": 80}
+    },
+    {
+      "id": "TPL_EXCH_007",
+      "equipmentType": "heat_transfer",
+      "title": "Inspection Échangeur Thermique - Norme ISO 45001 OCP",
+      "description": "Checklist pour échangeurs à plaques et tubes",
+      "version": "1.2",
+      "frequency": "quarterly",
+      "estimatedDuration": 35,
+      "sections": [
+        {
+          "id": "E1",
+          "name": "1. Inspection externe",
+          "items": [
+            {"id": "E1_1", "check": "État des plaques/tubes", "type": "boolean", "mandatory": true, "criticalityLevel": "high"},
+            {"id": "E1_2", "check": "Corrosion visible", "type": "boolean", "mandatory": true, "criticalityLevel": "high"},
+            {"id": "E1_3", "check": "Fuites détectées", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"}
+          ]
+        },
+        {
+          "id": "E2",
+          "name": "2. Tests de performance",
+          "items": [
+            {"id": "E2_1", "check": "Température entrée primaire", "type": "number", "unit": "°C", "mandatory": true, "criticalityLevel": "medium"},
+            {"id": "E2_2", "check": "Température sortie primaire", "type": "number", "unit": "°C", "mandatory": true, "criticalityLevel": "medium"},
+            {"id": "E2_3", "check": "Perte de charge", "type": "number", "unit": "mbar", "range": {"min": 0, "max": 500}, "mandatory": true, "criticalityLevel": "high"},
+            {"id": "E2_4", "check": "Encrassement détecté", "type": "boolean", "mandatory": true, "criticalityLevel": "medium"}
+          ]
+        },
+        {
+          "id": "E3",
+          "name": "3. Observations",
+          "items": [
+            {"id": "E3_1", "check": "Notes", "type": "textarea", "mandatory": false},
+            {"id": "E3_2", "check": "Photos", "type": "file", "mandatory": false}
+          ]
+        }
+      ],
+      "scoringRules": {"totalItems": 9, "mandatoryItems": 7, "passingScore": 75}
+    },
+    {
+      "id": "TPL_SEP_008",
+      "equipmentType": "separation",
+      "title": "Inspection Séparateur - Norme ISO 45001 OCP",
+      "description": "Checklist pour séparateurs cycloniques et centrifuges",
+      "version": "1.1",
+      "frequency": "monthly",
+      "estimatedDuration": 20,
+      "sections": [
+        {
+          "id": "S1",
+          "name": "1. Inspection visuelle",
+          "items": [
+            {"id": "S1_1", "check": "État du corps", "type": "boolean", "mandatory": true, "criticalityLevel": "high"},
+            {"id": "S1_2", "check": "Accumulation de matière", "type": "boolean", "mandatory": true, "criticalityLevel": "medium"},
+            {"id": "S1_3", "check": "Fuites", "type": "boolean", "mandatory": true, "criticalityLevel": "critical"}
+          ]
+        },
+        {
+          "id": "S2",
+          "name": "2. Tests de performance",
+          "items": [
+            {"id": "S2_1", "check": "Efficacité de séparation", "type": "number", "unit": "%", "range": {"min": 95, "max": 100}, "mandatory": true, "criticalityLevel": "high"},
+            {"id": "S2_2", "check": "Débit nominal", "type": "number", "unit": "m³/h", "mandatory": true, "criticalityLevel": "medium"},
+            {"id": "S2_3", "check": "Perte de charge", "type": "number", "unit": "mbar", "range": {"min": 0, "max": 300}, "mandatory": true, "criticalityLevel": "medium"}
+          ]
+        },
+        {
+          "id": "S3",
+          "name": "3. Observations",
+          "items": [
+            {"id": "S3_1", "check": "Notes", "type": "textarea", "mandatory": false},
+            {"id": "S3_2", "check": "Photos", "type": "file", "mandatory": false}
+          ]
+        }
+      ],
+      "scoringRules": {"totalItems": 8, "mandatoryItems": 6, "passingScore": 70}
+    }
+  ]
+}

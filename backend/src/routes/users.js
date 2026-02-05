@@ -1,17 +1,15 @@
-# Créer le dossier routes s'il n'existe pas
-New-Item -ItemType Directory -Path .\backend\src\routes -Force
+# D'abord, supprimer le fichier incorrect
+Remove-Item .\backend\src\routes\users.js -Force
 
-# Créer le fichier users.js
-@"
+# Recréer avec le bon contenu (SANS les commentaires #)
+@'
 const express = require('express');
 const router = express.Router();
 const { body, param, query, validationResult } = require('express-validator');
 const pool = require('../config/database');
 const { requireRole } = require('../middleware/auth');
 
-// ============================================================================
-// GET /api/v1/users - Liste des utilisateurs (admin/manager seulement)
-// ============================================================================
+// GET /api/v1/users - Liste des utilisateurs
 router.get('/', requireRole('admin', 'manager'), [
   query('role').optional().isIn(['admin', 'manager', 'inspector', 'viewer']),
   query('isActive').optional().isBoolean(),
@@ -38,13 +36,13 @@ router.get('/', requireRole('admin', 'manager'), [
     let paramIndex = 1;
 
     if (role) {
-      whereConditions.push(`role = \$${paramIndex}`);
+      whereConditions.push(`role = $${paramIndex}`);
       queryParams.push(role);
       paramIndex++;
     }
 
     if (isActive !== undefined) {
-      whereConditions.push(`is_active = \$${paramIndex}`);
+      whereConditions.push(`is_active = $${paramIndex}`);
       queryParams.push(isActive === 'true');
       paramIndex++;
     }
@@ -60,7 +58,7 @@ router.get('/', requireRole('admin', 'manager'), [
       FROM users
       ${whereClause}
       ORDER BY created_at DESC
-      LIMIT \$${paramIndex} OFFSET \$${paramIndex + 1}
+      LIMIT $${paramIndex} OFFSET $${paramIndex + 1}
     `;
 
     queryParams.push(limit, offset);
@@ -97,9 +95,7 @@ router.get('/', requireRole('admin', 'manager'), [
   }
 });
 
-// ============================================================================
 // GET /api/v1/users/:id - Détails d'un utilisateur
-// ============================================================================
 router.get('/:id', requireRole('admin', 'manager'), [
   param('id').isUUID()
 ], async (req, res, next) => {
@@ -116,7 +112,7 @@ router.get('/:id', requireRole('admin', 'manager'), [
         id, firebase_uid, email, display_name, role, department,
         phone, is_active, created_at, last_login
       FROM users
-      WHERE id = \$1
+      WHERE id = $1
     `;
 
     const result = await pool.query(query, [id]);
@@ -128,42 +124,17 @@ router.get('/:id', requireRole('admin', 'manager'), [
       });
     }
 
-    // Statistiques de l'utilisateur si inspecteur
-    if (result.rows[0].role === 'inspector') {
-      const statsQuery = `
-        SELECT 
-          COUNT(*) as total_checklists,
-          AVG(score) as avg_score,
-          COUNT(*) FILTER (WHERE final_status = 'conforme') as conforme_count
-        FROM checklists
-        WHERE inspector_id = \$1
-          AND status = 'completed'
-      `;
-
-      const statsResult = await pool.query(statsQuery, [id]);
-
-      res.json({
-        success: true,
-        data: {
-          ...result.rows[0],
-          stats: statsResult.rows[0]
-        }
-      });
-    } else {
-      res.json({
-        success: true,
-        data: result.rows[0]
-      });
-    }
+    res.json({
+      success: true,
+      data: result.rows[0]
+    });
 
   } catch (error) {
     next(error);
   }
 });
 
-// ============================================================================
-// PUT /api/v1/users/:id - Mettre à jour un utilisateur (admin seulement)
-// ============================================================================
+// PUT /api/v1/users/:id - Mettre à jour un utilisateur
 router.put('/:id', requireRole('admin'), [
   param('id').isUUID(),
   body('displayName').optional().isString(),
@@ -180,8 +151,7 @@ router.put('/:id', requireRole('admin'), [
 
     const { id } = req.params;
 
-    // Vérifier que l'utilisateur existe
-    const checkQuery = 'SELECT id FROM users WHERE id = \$1';
+    const checkQuery = 'SELECT id FROM users WHERE id = $1';
     const checkResult = await pool.query(checkQuery, [id]);
 
     if (checkResult.rows.length === 0) {
@@ -205,7 +175,7 @@ router.put('/:id', requireRole('admin'), [
 
     Object.keys(req.body).forEach(key => {
       if (fieldMap[key]) {
-        updateFields.push(`${fieldMap[key]} = \$${paramIndex}`);
+        updateFields.push(`${fieldMap[key]} = $${paramIndex}`);
         queryParams.push(req.body[key]);
         paramIndex++;
       }
@@ -223,17 +193,11 @@ router.put('/:id', requireRole('admin'), [
     const updateQuery = `
       UPDATE users
       SET ${updateFields.join(', ')}, updated_at = CURRENT_TIMESTAMP
-      WHERE id = \$${paramIndex}
+      WHERE id = $${paramIndex}
       RETURNING id, email, display_name, role, department, phone, is_active
     `;
 
     const result = await pool.query(updateQuery, queryParams);
-
-    // Log audit
-    await pool.query(`
-      INSERT INTO audit_logs (user_id, action, entity_type, entity_id, changes)
-      VALUES (\$1, 'user_updated', 'user', \$2, \$3)
-    `, [req.user.id, id, JSON.stringify(req.body)]);
 
     res.json({
       success: true,
@@ -246,9 +210,7 @@ router.put('/:id', requireRole('admin'), [
   }
 });
 
-// ============================================================================
-// DELETE /api/v1/users/:id - Supprimer un utilisateur (admin seulement)
-// ============================================================================
+// DELETE /api/v1/users/:id - Supprimer un utilisateur
 router.delete('/:id', requireRole('admin'), [
   param('id').isUUID()
 ], async (req, res, next) => {
@@ -260,7 +222,6 @@ router.delete('/:id', requireRole('admin'), [
 
     const { id } = req.params;
 
-    // Empêcher la suppression de soi-même
     if (id === req.user.id) {
       return res.status(400).json({
         success: false,
@@ -268,7 +229,7 @@ router.delete('/:id', requireRole('admin'), [
       });
     }
 
-    const deleteQuery = 'DELETE FROM users WHERE id = \$1 RETURNING email';
+    const deleteQuery = 'DELETE FROM users WHERE id = $1 RETURNING email';
     const result = await pool.query(deleteQuery, [id]);
 
     if (result.rows.length === 0) {
@@ -277,12 +238,6 @@ router.delete('/:id', requireRole('admin'), [
         error: 'User not found'
       });
     }
-
-    // Log audit
-    await pool.query(`
-      INSERT INTO audit_logs (user_id, action, entity_type, entity_id, changes)
-      VALUES (\$1, 'user_deleted', 'user', \$2, \$3)
-    `, [req.user.id, id, JSON.stringify({ email: result.rows[0].email })]);
 
     res.json({
       success: true,
@@ -294,44 +249,5 @@ router.delete('/:id', requireRole('admin'), [
   }
 });
 
-// ============================================================================
-// GET /api/v1/users/stats/inspectors - Statistiques des inspecteurs
-// ============================================================================
-router.get('/stats/inspectors', requireRole('admin', 'manager'), async (req, res, next) => {
-  try {
-    const query = `
-      SELECT 
-        u.id,
-        u.display_name,
-        u.email,
-        COUNT(c.id) as total_checklists,
-        AVG(c.score) as avg_score,
-        COUNT(*) FILTER (WHERE c.final_status = 'conforme') as conforme_count,
-        COUNT(*) FILTER (WHERE c.completed_at >= CURRENT_DATE - INTERVAL '30 days') as recent_checklists
-      FROM users u
-      LEFT JOIN checklists c ON u.id = c.inspector_id AND c.status = 'completed'
-      WHERE u.role = 'inspector' AND u.is_active = true
-      GROUP BY u.id, u.display_name, u.email
-      ORDER BY recent_checklists DESC
-    `;
-
-    const result = await pool.query(query);
-
-    res.json({
-      success: true,
-      data: result.rows.map(row => ({
-        ...row,
-        avg_score: row.avg_score ? Math.round(parseFloat(row.avg_score)) : 0,
-        total_checklists: parseInt(row.total_checklists),
-        conforme_count: parseInt(row.conforme_count),
-        recent_checklists: parseInt(row.recent_checklists)
-      }))
-    });
-
-  } catch (error) {
-    next(error);
-  }
-});
-
 module.exports = router;
-"@ | Out-File -FilePath .\backend\src\routes\users.js -Encoding UTF8
+'@ | Out-File -FilePath .\backend\src\routes\users.js -Encoding UTF8

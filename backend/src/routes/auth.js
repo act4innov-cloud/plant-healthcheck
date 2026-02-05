@@ -1,0 +1,10 @@
+import express from 'express';
+import authController from '../controllers/authController.js';
+import { verifyToken } from '../middleware/authMiddleware.js';
+
+const router = express.Router();
+
+router.post('/register', (req, res) => authController.register(req, res));
+router.get('/me', verifyToken, (req, res) => authController.getCurrentUser(req, res));
+
+export default router;

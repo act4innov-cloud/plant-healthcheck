@@ -1,53 +1,41 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const compression = require('compression');
-const morgan = require('morgan');
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import compression from 'compression';
+import morgan from 'morgan';
 
 // Import routes
-const equipmentsRoutes = require('./routes/equipments');
-const checklistsRoutes = require('./routes/checklists');
-const dashboardRoutes = require('./routes/dashboard');
-const documentsRoutes = require('./routes/documents');
-const reportsRoutes = require('./routes/reports');
-const usersRoutes = require('./routes/users');
-const alertsRoutes = require('./routes/alerts');
+import authRoutes from './routes/auth.js';
+import usersRoutes from './routes/users.js';
+import alertsRoutes from './routes/alerts.js';
+import checklistsRoutes from './routes/checklists.js';
+import dashboardRoutes from './routes/dashboard.js';
+import documentsRoutes from './routes/documents.js';
+import equipmentsRoutes from './routes/equipments.js';
+import reportsRoutes from './routes/reports.js';
 
-// Import middleware
-const { authMiddleware } = require('./middleware/auth');
-const { errorHandler } = require('./middleware/errorHandler');
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ============================================================================
-// MIDDLEWARE
-// ============================================================================
-app.use(helmet()); // Security headers
-app.use(compression()); // Compress responses
-app.use(morgan('combined')); // Logging
-
-// CORS configuration
-const corsOptions = {
+// Middleware
+app.use(helmet());
+app.use(compression());
+app.use(morgan('combined'));
+app.use(cors({
   origin: process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:5173'],
-  credentials: true,
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
-
-// Body parsing
+  credentials: true
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// ============================================================================
-// HEALTH CHECK
-// ============================================================================
+// Health check
 app.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
-    version: '1.0.0',
     environment: process.env.NODE_ENV || 'development'
   });
 });
@@ -55,62 +43,38 @@ app.get('/health', (req, res) => {
 app.get('/', (req, res) => {
   res.json({
     service: 'PlantHealthCheck API',
-    version: '1.0.0',
-    documentation: '/api/v1/docs'
+    version: '1.0.0'
   });
 });
 
-// ============================================================================
-// API ROUTES
-// ============================================================================
+// Routes
 const API_PREFIX = '/api/v1';
+app.use(\\/auth\, authRoutes);
+app.use(\\/users\, usersRoutes);
+app.use(\\/alerts\, alertsRoutes);
+app.use(\\/checklists\, checklistsRoutes);
+app.use(\\/dashboard\, dashboardRoutes);
+app.use(\\/documents\, documentsRoutes);
+app.use(\\/equipments\, equipmentsRoutes);
+app.use(\\/reports\, reportsRoutes);
 
-// Public routes (no auth required)
-app.use(`${API_PREFIX}/auth`, require('./routes/auth'));
-
-// Protected routes (auth required)
-app.use(`${API_PREFIX}/equipments`, authMiddleware, equipmentsRoutes);
-app.use(`${API_PREFIX}/checklists`, authMiddleware, checklistsRoutes);
-app.use(`${API_PREFIX}/dashboard`, authMiddleware, dashboardRoutes);
-app.use(`${API_PREFIX}/documents`, authMiddleware, documentsRoutes);
-app.use(`${API_PREFIX}/reports`, authMiddleware, reportsRoutes);
-app.use(`${API_PREFIX}/users`, authMiddleware, usersRoutes);
-app.use(`${API_PREFIX}/alerts`, authMiddleware, alertsRoutes);
-
-// ============================================================================
-// ERROR HANDLING
-// ============================================================================
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({
     error: 'Not Found',
-    message: `Route ${req.method} ${req.url} not found`,
-    timestamp: new Date().toISOString()
+    message: \Route \ \ not found\
   });
 });
 
-// Global error handler
-app.use(errorHandler);
+// Error handler
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: err.message });
+});
 
-// ============================================================================
-// START SERVER
-// ============================================================================
+// Start server
 app.listen(PORT, () => {
-  console.log(`\n🚀 PlantHealthCheck API Server`);
-  console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🌐 Server running on port ${PORT}`);
-  console.log(`🔗 API: http://localhost:${PORT}${API_PREFIX}`);
-  console.log(`💚 Health check: http://localhost:${PORT}/health`);
-  console.log(`\n✅ Server ready to accept requests\n`);
+  console.log('Server running on port ' + PORT);
 });
 
-// Handle graceful shutdown
-process.on('SIGTERM', () => {
-  console.log('\n📴 SIGTERM signal received: closing HTTP server');
-  server.close(() => {
-    console.log('✅ HTTP server closed');
-    process.exit(0);
-  });
-});
-
-module.exports = app;
+export default app;

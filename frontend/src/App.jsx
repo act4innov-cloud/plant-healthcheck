@@ -24,15 +24,3 @@ export default function App() {
     </Router>
   );
 }
-import EquipmentList from './components/Equipments/EquipmentList';
-import ChecklistForm from './components/Checklists/ChecklistForm';
-import DocumentUploadAdvanced from './components/Documents/DocumentUploadAdvanced';
-import ApprovalQueue from './components/Approvals/ApprovalQueue';
-import DashboardAdvanced from './components/Dashboard/DashboardAdvanced';
-
-// Dans les routes:
-<Route path="/equipments" element={<ProtectedRoute><EquipmentList /></ProtectedRoute>} />
-<Route path="/checklists/new" element={<ProtectedRoute><ChecklistForm /></ProtectedRoute>} />
-<Route path="/documents/upload" element={<ProtectedRoute><DocumentUploadAdvanced /></ProtectedRoute>} />
-<Route path="/approvals" element={<ProtectedRoute><ApprovalQueue /></ProtectedRoute>} />
-<Route path="/dashboard" element={<ProtectedRoute><DashboardAdvanced /></ProtectedRoute>} />
